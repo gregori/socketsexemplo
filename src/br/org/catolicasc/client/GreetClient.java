@@ -35,6 +35,15 @@ public class GreetClient {
     }
 
     public static void main(String[] args) {
-
+        GreetClient client = new GreetClient();
+        try {
+            client.start("127.0.0.1", 12345);
+            String response = client.sendMessage("hello server");
+            System.out.println("Resposta do servidor: " + response);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            client.stop();
+        }
     }
 }
