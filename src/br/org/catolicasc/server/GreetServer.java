@@ -18,7 +18,7 @@ public class GreetServer {
         serverSocket = new ServerSocket(port);  // escuta na porta port
         clientSocket = serverSocket.accept();  // espera conexão
         // handler para escrita de dados
-        out = new PrintWriter(clientSocket.getOutputStream());
+        out = new PrintWriter(clientSocket.getOutputStream(), true);
         // handler lara leitura de dados
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
