@@ -27,11 +27,16 @@ public class GreetServer {
 
     private void clientHandler() throws IOException {
         String greeting = in.readLine();
-        if ("hello server".equals(greeting)) {
-            out.println("hello client");
-        } else {
-            out.println("Mensagem incorreta.");
+        while (!"!quit".equals(greeting)) {
+            if ("hello server".equals(greeting)) {
+                out.println("hello client");
+            } else {
+                out.println("Mensagem incorreta.");
+            }
+            greeting = in.readLine();
         }
+
+        out.println("Desligando servidor.");
     }
 
     public void stop() {

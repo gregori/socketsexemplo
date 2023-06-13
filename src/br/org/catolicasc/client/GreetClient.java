@@ -40,6 +40,12 @@ public class GreetClient {
             client.start("127.0.0.1", 12345);
             String response = client.sendMessage("hello server");
             System.out.println("Resposta do servidor: " + response);
+
+            response = client.sendMessage("olá");
+            System.out.println("Resposta do servidor: " + response);
+
+            response = client.sendMessage("!quit");
+            System.out.println("Resposta do servidor: " + response);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         } finally {
