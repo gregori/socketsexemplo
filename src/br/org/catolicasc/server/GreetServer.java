@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class GreetServer {
     private ServerSocket serverSocket;
@@ -27,13 +28,17 @@ public class GreetServer {
 
     private void clientHandler() throws IOException {
         String greeting = in.readLine();
-        while (!"!quit".equals(greeting)) {
-            if ("hello server".equals(greeting)) {
-                out.println("hello client");
-            } else {
-                out.println("Mensagem incorreta.");
-            }
+        Scanner scanner = new Scanner(System.in);
+        String mensagem = "";
+
+        while (!"!quit".equals(greeting) && !"!quit".equals(mensagem)) {
+            System.out.println("Cliente: " + greeting);
+            System.out.print("Entre uma mensagem (!quit para sair): ");
+            mensagem = scanner.nextLine();
+            out.println(mensagem);
+
             greeting = in.readLine();
+
         }
 
         out.println("Desligando servidor.");
