@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class GreetClient {
     private Socket clientSocket;
@@ -38,14 +39,13 @@ public class GreetClient {
         GreetClient client = new GreetClient();
         try {
             client.start("127.0.0.1", 12345);
-            String response = client.sendMessage("hello server");
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Entre uma mensagem: ");
+            String mensagem = scanner.nextLine();
+            String response = client.sendMessage(mensagem);
             System.out.println("Resposta do servidor: " + response);
 
-            response = client.sendMessage("olá");
-            System.out.println("Resposta do servidor: " + response);
-
-            response = client.sendMessage("!quit");
-            System.out.println("Resposta do servidor: " + response);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         } finally {
