@@ -37,6 +37,7 @@ public class GreetServer {
         }
 
         out.println("Desligando servidor.");
+        System.out.println("Desligando servidor...");
     }
 
     public void stop() {
