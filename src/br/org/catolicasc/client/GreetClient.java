@@ -41,10 +41,15 @@ public class GreetClient {
             client.start("127.0.0.1", 12345);
 
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Entre uma mensagem: ");
-            String mensagem = scanner.nextLine();
-            String response = client.sendMessage(mensagem);
-            System.out.println("Resposta do servidor: " + response);
+            String mensagem;
+            do {
+                System.out.print("Entre uma mensagem (!quit para sair): ");
+                mensagem = scanner.nextLine();
+                String response = client.sendMessage(mensagem);
+                System.out.println("Resposta do servidor: " + response);
+            } while (!"!quit".equals(mensagem));
+
+            System.out.println("Desligando cliente...");
 
         } catch (IOException ex) {
             throw new RuntimeException(ex);
