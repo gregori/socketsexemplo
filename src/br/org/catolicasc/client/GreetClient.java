@@ -30,8 +30,11 @@ public class GreetClient {
         }
     }
 
-    public String sendMessage(String msg) throws IOException {
+    public void sendMessage(String msg) throws IOException {
         out.println(msg);  // manda a msg para o socket
+    }
+
+    public String receiveMessage() throws IOException {
         return in.readLine();  // retorna a mensagem recebida do socket
     }
 
@@ -42,13 +45,16 @@ public class GreetClient {
 
             Scanner scanner = new Scanner(System.in);
             String mensagem;
+            String response;
             do {
                 System.out.print("Entre uma mensagem (!quit para sair): ");
                 mensagem = scanner.nextLine();
-                String response = client.sendMessage(mensagem);
+                client.sendMessage(mensagem);
+                response = client.receiveMessage();
                 System.out.println("Resposta do servidor: " + response);
-            } while (!"!quit".equals(mensagem));
+            } while (!"!quit".equals(mensagem) && !"!quit".equals(response));
 
+            client.sendMessage("!quit");
             System.out.println("Desligando cliente...");
 
         } catch (IOException ex) {
